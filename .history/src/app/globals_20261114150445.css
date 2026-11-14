@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+/* dark mode ab OS ki setting se nahi, <html class="dark"> se chalta hai (next-themes) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------- Light theme colors ---------- */
+:root {
+  --background: oklch(0.99 0.002 250);
+  --foreground: oklch(0.2 0.02 260);
+  --muted: oklch(0.96 0.006 260);
+  --muted-foreground: oklch(0.48 0.02 260);
+  --border: oklch(0.91 0.008 260);
+  --accent: oklch(0.52 0.14 165);
+  --accent-foreground: oklch(0.99 0 0);
+}
+
+/* ---------- Dark theme colors ---------- */
+.dark {
+  --background: oklch(0.15 0.012 260);
+  --foreground: oklch(0.96 0.005 260);
+  --muted: oklch(0.2 0.014 260);
+  --muted-foreground: oklch(0.7 0.02 260);
+  --border: oklch(0.28 0.016 260);
+  --accent: oklch(0.78 0.15 165);
+  --accent-foreground: oklch(0.15 0.012 260);
+}
+
+/* Tailwind ko batao ke in variables ke naam se classes banao: bg-background, text-accent ... */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* sticky navbar ke neeche section na chhup jaye */
+    scroll-padding-top: 5rem;
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+  }
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-foreground);
+  }
+}
